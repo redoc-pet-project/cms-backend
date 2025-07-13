@@ -11,9 +11,8 @@ export class RequestLoggerService extends Logger implements NestLoggerService {
     private format(message: any): string {
         const requestId = this.cls.get('requestId');
         if (typeof message === 'string') { return requestId ? `[${requestId}] ${message}` : `[] ${message}`; }
-        console.log(JSONC.stringify(message), message)
-        const data = JSONC.stringify({ data: message });
 
+        const data = JSONC.stringify({ data: message });
         return requestId ? `[${requestId}] ${data}` : `[] ${data}`;
     }
 

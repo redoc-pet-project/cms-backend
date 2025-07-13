@@ -1,9 +1,11 @@
 import { Injectable, Logger } from "@nestjs/common";
 import * as bcrypt from 'bcrypt';
-import { BadRequest } from "../../../../shared/common/exceptions/bad-request.exception";
-import { Conflict } from "../../../../shared/common/exceptions/conflict.exception";
-import { User } from "../../domain/entities/user.entity";
-import { IUserRepository } from "../../domain/repositories/user.repository";
+
+import { User } from "~modules/user/domain/entities/user.entity";
+import { IUserRepository } from "~modules/user/domain/repositories/user.repository";
+import { BadRequest } from "~shared/common/exceptions/bad-request.exception";
+import { Conflict } from "~shared/common/exceptions/conflict.exception";
+
 import { UserDto } from "../dto/user.dto";
 
 @Injectable()

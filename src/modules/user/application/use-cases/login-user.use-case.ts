@@ -1,8 +1,9 @@
 import { Injectable, Logger } from "@nestjs/common";
 import * as bcrypt from 'bcrypt';
-import { Unauthorized } from "../../../../shared/common/exceptions/unauthorized.exception";
-import { IUserRepository } from "../../domain/repositories/user.repository";
-import { ITokenService } from "../../domain/services/token.service";
+import { IUserRepository } from "~modules/user/domain/repositories/user.repository";
+import { ITokenService } from "~modules/user/domain/services/token.service";
+import { Unauthorized } from "~shared/common/exceptions/unauthorized.exception";
+
 import { JwtTokenPayloadDto } from "../dto/jwt-token.dto";
 
 @Injectable()

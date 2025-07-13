@@ -10,12 +10,19 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "rootDir": "./",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "~modules/*": ["src/modules/*"],
+      "~shared/*": ["src/shared/*"]
+    }
+  },
+  "include": [".", "*package.json"],
+  "exclude": ["node_modules", "**/*.spec.ts", "dist"]
 }
