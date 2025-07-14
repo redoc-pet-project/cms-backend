@@ -2,6 +2,7 @@ import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ClsModule } from 'nestjs-cls';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { CategoryModule } from '~modules/category/category.module';
 import { UserModule } from '~modules/user/user.module';
 import { VendorModule } from '~modules/vendor/vendor.module';
 import { RequestContextMiddleware } from './shared/middlewares/request-context.middleware';
@@ -35,6 +36,7 @@ import { SharedModule } from './shared/shared.module';
     }),
     UserModule,
     VendorModule,
+    CategoryModule,
     SharedModule
   ],
   controllers: [],

@@ -16,8 +16,9 @@ export class CategoryOrmEntity extends BaseOrmEntity {
     @TreeParent()
     parent: CategoryOrmEntity | null;
 
+    @Column({ nullable: true })
+    parentId: string | null;
+
     @TreeChildren()
     children: CategoryOrmEntity[];
-
-    // @ManyToOne(() => )
 }
