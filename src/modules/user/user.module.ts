@@ -10,27 +10,32 @@ import { UserOrmEntity } from './infrastructure/entities/user.orm-entity';
 import { UserRepositoryImpl } from './infrastructure/repositories/user.repository.impl';
 import { TokenServiceImpl } from './infrastructure/services/token.service.impl';
 import { AuthController } from './interface/controllers/auth.controller';
+import { EnvConfig } from '~shared/configs/env.config';
+import { GetMeUseCase } from '~modules/user/application/use-cases/get-me.use-case';
+import { ClsModule } from 'nestjs-cls';
 
 @Module({
-    imports: [
-        JwtModule.register({
-            secret: process.env.JWT_SECRET || 'ascsacwikdnwknd', // Move to env
-            signOptions: { expiresIn: '1h' },
-        }),
-        TypeOrmModule.forFeature([UserOrmEntity])
-    ],
-    controllers: [AuthController],
-    providers: [
-        RegisterUserUseCase,
-        LoginUserUseCase,
-        {
-            provide: IUserRepository,
-            useClass: UserRepositoryImpl,
-        },
-        {
-            provide: ITokenService,
-            useClass: TokenServiceImpl
-        }
-    ],
+  imports: [
+    JwtModule.register({
+      secret: EnvConfig.get('JWT_SECRET'),
+      signOptions: { expiresIn: '1h' },
+    }),
+    TypeOrmModule.forFeature([UserOrmEntity]),
+    ClsModule.forFeature(),
+  ],
+  controllers: [AuthController],
+  providers: [
+    RegisterUserUseCase,
+    LoginUserUseCase,
+    GetMeUseCase,
+    {
+      provide: IUserRepository,
+      useClass: UserRepositoryImpl,
+    },
+    {
+      provide: ITokenService,
+      useClass: TokenServiceImpl,
+    },
+  ],
 })
-export class UserModule { }
+export class UserModule {}
